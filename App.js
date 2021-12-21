@@ -3,8 +3,13 @@ import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
 import Logo from './assets/logo.svg';
+import * as SplashScreen from 'expo-splash-screen';
 
 export default function App() {
+  // TO DO: Remove this after testing
+  SplashScreen.preventAutoHideAsync();
+  setTimeout(SplashScreen.hideAsync, 4000);
+
   let [selectedImage, setSelectedImage] = React.useState(null);
 
   let openImagePickerAsync = async () => {
@@ -32,12 +37,19 @@ export default function App() {
     await Sharing.shareAsync(selectedImage.localUri);
   };
 
+  let closeShareDialog = () => {
+    setSelectedImage(null);
+  }
+
   if (selectedImage !== null) {
     return (
       <View style={styles.container}>
         <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
         <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
           <Text style={styles.buttonText}>Share this photo</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={closeShareDialog} style={styles.button}>
+          <Text style={styles.buttonText}>Return</Text>
         </TouchableOpacity>
       </View>
     );
