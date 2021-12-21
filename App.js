@@ -2,7 +2,7 @@ import React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
-import Logo from './assets/logo.svg';
+import Logo from './app/assets/logo.svg';
 import * as SplashScreen from 'expo-splash-screen';
 
 export default function App() {
@@ -58,7 +58,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       {Platform.OS === 'web' 
-        ? <Image source={require('./assets/logo.svg')} style={styles.webLogo}/>
+        ? <Image source={require('./app/assets/logo.svg')} style={styles.webLogo}/>
         : <Logo width={200} height={200} />}
       <Text style={styles.instructions}>
         To share a photo from your phone with a friend, just press the button below!
