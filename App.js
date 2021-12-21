@@ -2,10 +2,12 @@ import React from 'react';
 import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Sharing from 'expo-sharing';
-import Logo from './app/assets/logo.svg';
 import * as SplashScreen from 'expo-splash-screen';
+import GlobalProvider from './src/context/provider';
 
-export default function App() {
+import { HelloWorld, Logo }  from './src/components/atoms';
+
+const App = () => {
   // TO DO: Remove this after testing
   SplashScreen.preventAutoHideAsync();
   setTimeout(SplashScreen.hideAsync, 4000);
@@ -56,20 +58,23 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      {Platform.OS === 'web' 
-        ? <Image source={require('./app/assets/logo.svg')} style={styles.webLogo}/>
-        : <Logo width={200} height={200} />}
-      <Text style={styles.instructions}>
-        To share a photo from your phone with a friend, just press the button below!
-      </Text>
+    <GlobalProvider>
+      <View style={styles.container}>
+        <HelloWorld name="Helder Burato Berto"/>
+        <Logo/>
+        <Text style={styles.instructions}>
+          To share a photo from your phone with a friend, just press the button below!
+        </Text>
 
-      <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-        <Text style={styles.buttonText}>Pick a photo</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
+          <Text style={styles.buttonText}>Pick a photo</Text>
+        </TouchableOpacity>
+      </View>
+    </GlobalProvider>
   );
 }
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
@@ -77,11 +82,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  logo: {
-    width: 305,
-    height: 159,
-    marginBottom: 20,
   },
   instructions: {
     color: '#888',
@@ -105,10 +105,4 @@ const styles = StyleSheet.create({
     height: 300,
     resizeMode: 'contain',
   },
-  webLogo: {
-    marginBottom: 32,
-    width: '300px',
-    height: '60px',
-    resizeMode: 'contain',
-  }
 });
