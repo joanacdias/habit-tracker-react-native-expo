@@ -1,76 +1,27 @@
 import React from 'react';
-import { Image, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import * as Sharing from 'expo-sharing';
+import { NavigationContainer } from '@react-navigation/native';
+// import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import { StyleSheet, View } from 'react-native';
+
 import * as SplashScreen from 'expo-splash-screen';
 import GlobalProvider from './src/context/provider';
 
-import { HelloWorld, Logo }  from './src/components/atoms';
+import Login from './src/screens/login';
 
 const App = () => {
   // TO DO: Remove this after testing
   SplashScreen.preventAutoHideAsync();
   setTimeout(SplashScreen.hideAsync, 4000);
 
-  let [selectedImage, setSelectedImage] = React.useState(null);
-
-  let openImagePickerAsync = async () => {
-    let permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-    if (permissionResult.granted === false) {
-      alert('Permission to access camera roll is required!');
-      return;
-    }
-
-    let pickerResult = await ImagePicker.launchImageLibraryAsync();
-    if (pickerResult.cancelled === true) {
-      return;
-    }
-
-    setSelectedImage({ localUri: pickerResult.uri });
-  };
-
-  let openShareDialogAsync = async () => {
-    if (!(await Sharing.isAvailableAsync())) {
-      alert(`Uh oh, sharing isn't available on your platform`);
-      return;
-    }
-
-    await Sharing.shareAsync(selectedImage.localUri);
-  };
-
-  let closeShareDialog = () => {
-    setSelectedImage(null);
-  }
-
-  if (selectedImage !== null) {
-    return (
-      <View style={styles.container}>
-        <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-        <TouchableOpacity onPress={openShareDialogAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Share this photo</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={closeShareDialog} style={styles.button}>
-          <Text style={styles.buttonText}>Return</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
   return (
-    <GlobalProvider>
-      <View style={styles.container}>
-        <HelloWorld name="Helder Burato Berto"/>
-        <Logo/>
-        <Text style={styles.instructions}>
-          To share a photo from your phone with a friend, just press the button below!
-        </Text>
-
-        <TouchableOpacity onPress={openImagePickerAsync} style={styles.button}>
-          <Text style={styles.buttonText}>Pick a photo</Text>
-        </TouchableOpacity>
-      </View>
-    </GlobalProvider>
+    <NavigationContainer>
+      <GlobalProvider>
+        <View style={styles.container}>
+          <Login/>
+        </View>
+      </GlobalProvider>
+    </NavigationContainer>
   );
 }
 
@@ -82,27 +33,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  instructions: {
-    color: '#888',
-    fontSize: 18,
-    marginHorizontal: 15,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  button: {
-    backgroundColor: 'blue',
-    padding: 20,
-    borderRadius: 5,
-    marginTop: 32,
-  },
-  buttonText: {
-    fontSize: 20,
-    color: '#fff',
-  },
-  thumbnail: {
-    width: 300,
-    height: 300,
-    resizeMode: 'contain',
   },
 });
