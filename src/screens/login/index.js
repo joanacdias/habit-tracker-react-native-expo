@@ -1,52 +1,54 @@
 import React from 'react';
-import { Logo }  from '../../components/atoms';
-import { StyleSheet, Image, Text, View, TouchableOpacity } from 'react-native';
+import { Logo, InputText }  from '../../components/atoms';
+import { StyleSheet, Image, Text, View, TouchableOpacity, TextInput, Keyboard, TouchableWithoutFeedback, Platform } from 'react-native';
 import { openShareDialogAsync, openImagePickerAsync } from '../../utils/imagePickerUtils';
+import { Colours, Typography } from '../../styles';
+import { Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 const Login = () => {
-    let [selectedImage, setSelectedImage] = React.useState(null);
 
-    let handleOnPress = async () => {
-        setSelectedImage({ localUri: await openImagePickerAsync() });
-    };
-
-    let handleSharePress = async (uri) => {
-        await openShareDialogAsync(uri);
-    };
-
-    let closeShareDialog = () => {
-        setSelectedImage(null);
-    };
-
-    const shareDialog = () => ( 
-        <React.Fragment>
-            <Image source={{ uri: selectedImage.localUri }} style={styles.thumbnail} />
-            <TouchableOpacity onPress={() => handleSharePress(selectedImage.localUri)} style={styles.button}>
-                <Text style={styles.buttonText}>Share this photo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={closeShareDialog} style={styles.button}>
-            <Text style={styles.buttonText}>Return</Text>
-            </TouchableOpacity>
-        </React.Fragment>
+    const DismissKeyboard = ({ children }) => (
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          {children}
+        </TouchableWithoutFeedback>
     );
 
-    const main = () =>  (
-        <React.Fragment>
-            <Logo/>
-            <Text style={styles.instructions}>
-                To share a photo from your phone with a friend, just press the button below!
+    const title = () =>  (
+        <View styles={styles.titleContainer}>
+            <Text style={Typography.FONT_H1}>
+                Welcome back 👋,
             </Text>
-            <TouchableOpacity onPress={handleOnPress} style={styles.button}>
-                <Text style={styles.buttonText}>Pick a photo</Text>
-            </TouchableOpacity>
-        </React.Fragment>
+            <Text style={Typography.FONT_BODY_XL}>
+                Log in to continue!,
+            </Text>
+        </View>
+    );
+
+    const fields = () => (
+        <InputText inputPlaceholder="Email"/>                                                                                                                                                                                                                                                         
+    );
+
+    const mobileView = () => (
+        <DismissKeyboard>
+            <View style={styles.container}>
+                { title() }
+                { fields() }                                                                                                                                                                                                                                                     
+            </View>
+        </DismissKeyboard>
+    );
+
+    const webView = () => (
+        <View style={styles.container}>
+            { title() }
+            { fields() }                                                                                                                                                                                                                                                     
+        </View>
     );
 
     return (
-        <View style={styles.container}>
-            { selectedImage !== null && shareDialog() }
-            { selectedImage === null && main() }
-        </View>
+        <React.Fragment>
+            { Platform.OS === 'android' || Platform.OS === 'ios' && mobileView() }
+            { Platform.OS === 'web' && webView() }
+        </React.Fragment>
     );
 }
 
@@ -54,32 +56,25 @@ export default Login;
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        alignSelf: 'stretch',
+        justifyContent: 'center',
+    },  
+    titleContainer: {
       flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
+      alignItems: 'flex-start',
       justifyContent: 'center',
-    },
-    instructions: {
-      color: '#888',
-      fontSize: 18,
-      marginHorizontal: 15,
-      marginBottom: 10,
-      textAlign: 'center',
+      marginBottom: 48,
     },
     button: {
-      backgroundColor: 'blue',
-      padding: 20,
-      borderRadius: 5,
-      marginTop: 32,
-    },
-    buttonText: {
-      fontSize: 20,
-      color: '#fff',
-    },
-    thumbnail: {
-      width: 300,
-      height: 300,
-      resizeMode: 'contain',
-    },
+        backgroundColor: Colours.PRIMARY,
+        padding: 20,
+        borderRadius: 5,
+        marginTop: 32,
+      },
+      buttonText: {
+        fontSize: 20,
+        color: Colours.WHITE,
+      },
   });
   

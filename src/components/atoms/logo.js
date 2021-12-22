@@ -1,5 +1,4 @@
 import React from 'react';
-import YahtLogo from '../../assets/logo.svg';
 import { Platform, StyleSheet, Image } from 'react-native';
 
 const Logo = () => {
