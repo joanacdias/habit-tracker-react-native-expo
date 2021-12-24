@@ -14,7 +14,7 @@ const Login = () => {
     );
 
     const title = () =>  (
-        <View styles={styles.titleContainer}>
+        <View style={styles.titleContainer}>
             <Text style={Typography.FONT_H1}>
                 Welcome back 👋,
             </Text>
@@ -25,7 +25,14 @@ const Login = () => {
     );
 
     const fields = () => (
-        <InputText inputPlaceholder="Email"/>                                                                                                                                                                                                                                                         
+        <React.Fragment>
+            <InputText
+                inputPlaceholder="Email"
+            />
+            <InputText
+                inputPlaceholder="Password"
+            />
+        </React.Fragment>                                                                                                                                                                                                                                                       
     );
 
     const mobileView = () => (
@@ -61,10 +68,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },  
     titleContainer: {
-      flex: 1,
-      alignItems: 'flex-start',
-      justifyContent: 'center',
-      marginBottom: 48,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        marginBottom: 24,
     },
     button: {
         backgroundColor: Colours.PRIMARY,

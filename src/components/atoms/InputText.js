@@ -5,6 +5,7 @@ import { Colours, Typography } from '../../styles';
 const InputText = ({
   inputPlaceholder
 }) => {
+
   const [text, onChangeText] = React.useState("");
 
   return (
@@ -14,7 +15,7 @@ const InputText = ({
         value={text}
         onChangeText={onChangeText}
         keyboardAppearance='dark'
-        placeholder={inputPlaceholder || "Hello"}
+        placeholder={inputPlaceholder}
       />
     </SafeAreaView>
   );
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     borderColor: Colours.GRAY_300,
     borderRadius: 12,
     fontSize: Typography.FONT_SIZE_18,
+    marginBottom: 16,
   },
 });
 
