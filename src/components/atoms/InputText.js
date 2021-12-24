@@ -3,26 +3,18 @@ import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { Colours, Typography } from '../../styles';
 
 const InputText = ({
-  name,
-  inputPlaceholder,
-  autoCapitalize,
-  returnKeyType,
-  autoCompleteType,
+  inputPlaceholder
 }) => {
   const [text, onChangeText] = React.useState("");
 
   return (
     <SafeAreaView>
       <TextInput 
-        name={name}
         style={styles.input} 
         value={text}
         onChangeText={onChangeText}
         keyboardAppearance='dark'
-        placeholder={inputPlaceholder}
-        autoCapitalize={autoCapitalize}
-        returnKeyType={returnKeyType}
-        autoCompleteType={autoCompleteType}
+        placeholder={inputPlaceholder || "Hello"}
       />
     </SafeAreaView>
   );
@@ -37,7 +29,6 @@ const styles = StyleSheet.create({
     borderColor: Colours.GRAY_300,
     borderRadius: 12,
     fontSize: Typography.FONT_SIZE_18,
-    marginBottom: 16,
   },
 });
 

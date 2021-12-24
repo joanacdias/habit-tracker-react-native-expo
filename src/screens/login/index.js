@@ -1,15 +1,6 @@
 import React from 'react';
-import { Logo, TextInput }  from '../../components/atoms';
-import { 
-    // Form,
-    StyleSheet, 
-    Image, 
-    Text, 
-    View, 
-    TouchableOpacity, 
-    Keyboard, 
-    TouchableWithoutFeedback, 
-    Platform } from 'react-native';
+import { Logo, InputText }  from '../../components/atoms';
+import { StyleSheet, Image, Text, View, TouchableOpacity, TextInput, Keyboard, TouchableWithoutFeedback, Platform } from 'react-native';
 import { openShareDialogAsync, openImagePickerAsync } from '../../utils/imagePickerUtils';
 import { Colours, Typography } from '../../styles';
 import { Poppins_700Bold } from '@expo-google-fonts/poppins';
@@ -23,7 +14,7 @@ const Login = () => {
     );
 
     const title = () =>  (
-        <View style={styles.titleContainer}>
+        <View styles={styles.titleContainer}>
             <Text style={Typography.FONT_H1}>
                 Welcome back 👋,
             </Text>
@@ -34,24 +25,7 @@ const Login = () => {
     );
 
     const fields = () => (
-        <React.Fragment>
-            {/* <Form> */}
-                <TextInput
-                    name="email"
-                    inputPlaceholder="Email"
-                    autoCapitalize="none"
-                    returnKeyType="next"
-                    autoCompleteType="email"
-                /> 
-                <TextInput
-                    name="password"
-                    inputPlaceholder="Password"
-                    autoCapitalize="none"
-                    returnKeyType="done"
-                    autoCompleteType="password"
-                />
-            {/* </Form> */}
-        </React.Fragment>                                                                                                                                                                                                                                                         
+        <InputText inputPlaceholder="Email"/>                                                                                                                                                                                                                                                         
     );
 
     const mobileView = () => (
@@ -85,21 +59,22 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         justifyContent: 'center',
-    },
+    },  
     titleContainer: {
+      flex: 1,
       alignItems: 'flex-start',
       justifyContent: 'center',
-      marginBottom: 32,
+      marginBottom: 48,
     },
     button: {
         backgroundColor: Colours.PRIMARY,
         padding: 20,
         borderRadius: 5,
         marginTop: 32,
-    },
-    buttonText: {
+      },
+      buttonText: {
         fontSize: 20,
         color: Colours.WHITE,
-    },
+      },
   });
   
