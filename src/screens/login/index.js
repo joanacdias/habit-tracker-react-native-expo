@@ -1,6 +1,14 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Logo, InputText }  from '../../components/atoms';
-import { StyleSheet,
+import { useState } from 'react';
+
+import { 
+    Logo, 
+    InputText,
+    ButtonText
+}  from '../../components/atoms';
+import { 
+    StyleSheet,
     Text,
     View,
     KeyboardAvoidingView,
@@ -45,6 +53,13 @@ const Login = () => {
                 inputPlaceholder="Password"
                 // value={password}
                 // onChange={setPassword}
+            />
+            <ButtonText
+                text="Login"
+                onClick={() => { console.log("You Clicked on Me!"); }}
+                type="button"
+                buttonStyle="btnPrimaryNormal"
+                buttonSize="btnLarge"
             />
         </React.Fragment>                                                                                                                                                                                                                                                       
     );

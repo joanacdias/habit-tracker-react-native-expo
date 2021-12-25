@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
-import { Colours, Typography } from '../../styles';
+import { Colours, Sizes, Typography } from '../../styles';
 
 const InputText = ({
   inputPlaceholder
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     color: Colours.PRIMARY,
     borderColor: Colours.GRAY_300,
-    borderRadius: 12,
+    borderRadius: Sizes.BORDER_RADIUS_FIELDS,
     fontSize: Typography.FONT_SIZE_18,
     marginBottom: 16,
   },
