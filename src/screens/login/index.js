@@ -1,6 +1,13 @@
 import React from 'react';
 import { Logo, InputText }  from '../../components/atoms';
-import { StyleSheet, Image, Text, View, TouchableOpacity, TextInput, Keyboard, TouchableWithoutFeedback, Platform } from 'react-native';
+import { StyleSheet,
+    Text,
+    View,
+    KeyboardAvoidingView,
+    Keyboard,
+    TouchableWithoutFeedback,
+    Platform 
+} from 'react-native';
 import { openShareDialogAsync, openImagePickerAsync } from '../../utils/imagePickerUtils';
 import { Colours, Typography } from '../../styles';
 import { Poppins_700Bold } from '@expo-google-fonts/poppins';
@@ -53,8 +60,13 @@ const Login = () => {
 
     return (
         <React.Fragment>
-            { Platform.OS === 'android' || Platform.OS === 'ios' && mobileView() }
-            { Platform.OS === 'web' && webView() }
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                style={styles.container}
+                >
+                { Platform.OS === 'android' || Platform.OS === 'ios' && mobileView() }
+                { Platform.OS === 'web' && webView() }
+            </KeyboardAvoidingView>
         </React.Fragment>
     );
 }
