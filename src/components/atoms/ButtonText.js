@@ -37,6 +37,7 @@ const Button = ({
     <Pressable
         onPress={onPress}
         style={[styles[checkButtonStyle]]}
+        type={type}
     >   
         <Text style={[styles[checkButtonStyle], styles[checkButtonSize]]}>{text}</Text>
     </Pressable>

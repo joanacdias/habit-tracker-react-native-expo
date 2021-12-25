@@ -3,19 +3,29 @@ import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { Colours, Sizes, Typography } from '../../styles';
 
 const InputText = ({
-  inputPlaceholder
+  inputPlaceholder,
+  autoCapitalize,
+  keyboardType,
+  autoFocus,
+  onChangeText,
+  value,
+  secureTextEntry
 }) => {
 
-  const [text, onChangeText] = React.useState("");
+  // const [text, onChangeText] = React.useState("");
 
   return (
     <SafeAreaView>
       <TextInput 
         style={styles.input} 
-        value={text}
+        value={value}
         onChangeText={onChangeText}
         keyboardAppearance='dark'
         placeholder={inputPlaceholder}
+        autoCapitalize={autoCapitalize}
+        keyboardType={keyboardType || ''}
+        autoFocus={autoFocus}
+        secureTextEntry={secureTextEntry}
       />
     </SafeAreaView>
   );

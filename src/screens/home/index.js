@@ -2,7 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { ButtonText } from '../../atoms/components';
 import Firebase from '../../config/firebase';
 import { AuthenticatedUserContext } from '../../navigation/AuthenticatedUserProvider';
 
@@ -25,12 +24,6 @@ const Home = () => {
       <StatusBar style='dark-content' />
       <View style={styles.row}>
         <Text style={styles.title}>Welcome {user.email}!</Text>
-        <ButtonText
-        //   name='logout'
-        //   size={24}
-        //   color='#fff'
-        //   onPress={handleSignOut}
-        />
       </View>
       <Text style={styles.text}>Your UID is: {user.uid} </Text>
     </View>

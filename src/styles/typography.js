@@ -1,6 +1,5 @@
 import { scaleFont } from './mixins';
 import { GRAY_600 } from './colours';
-import React, { useState, useEffect } from 'react';
 import { Poppins_400Regular, Poppins_600SemiBold, Poppins_500Medium } from '@expo-google-fonts/poppins';
 
 // FONT FAMILY
