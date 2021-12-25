@@ -5,7 +5,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, View } from 'react-native';
 import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
-import GlobalProvider from './src/context/provider';
 
 import Login from './src/screens/login';
 
@@ -62,12 +61,10 @@ const App = () => {
   } else {
     return (
       <NavigationContainer>
-      <GlobalProvider>
-        <View style={styles.container}>
-          <Login/>
-        </View>
-      </GlobalProvider>
-    </NavigationContainer>
+      <View style={styles.container}>
+        <Login/>
+      </View>
+      </NavigationContainer>
     );
   }
 }

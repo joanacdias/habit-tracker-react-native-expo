@@ -14,6 +14,9 @@ import { Poppins_700Bold } from '@expo-google-fonts/poppins';
 
 const Login = () => {
 
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+
     const DismissKeyboard = ({ children }) => (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
           {children}
@@ -35,9 +38,13 @@ const Login = () => {
         <React.Fragment>
             <InputText
                 inputPlaceholder="Email"
+                // value={email}
+                // onChange={setEmail}
             />
             <InputText
                 inputPlaceholder="Password"
+                // value={password}
+                // onChange={setPassword}
             />
         </React.Fragment>                                                                                                                                                                                                                                                       
     );
