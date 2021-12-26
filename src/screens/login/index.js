@@ -1,6 +1,15 @@
+import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { Logo, InputText }  from '../../components/atoms';
-import { StyleSheet,
+import { useState } from 'react';
+
+import { 
+    Logo, 
+    InputText,
+    ButtonText,
+    ErrorMessage
+}  from '../../components/atoms';
+import { 
+    StyleSheet,
     Text,
     View,
     KeyboardAvoidingView,
@@ -10,9 +19,14 @@ import { StyleSheet,
 } from 'react-native';
 import { openShareDialogAsync, openImagePickerAsync } from '../../utils/imagePickerUtils';
 import { Colours, Typography } from '../../styles';
-import { Poppins_700Bold } from '@expo-google-fonts/poppins';
+
+// import Firebase from '../../../config/firebase';
 
 const Login = () => {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [loginError, setLoginError] = useState('');
 
     const DismissKeyboard = ({ children }) => (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
@@ -20,7 +34,17 @@ const Login = () => {
         </TouchableWithoutFeedback>
     );
 
-    const title = () =>  (
+    // const onLogin = async () => {
+    //     try {
+    //       if (email !== '' && password !== '') {
+    //         await auth.signInWithEmailAndPassword(email, password);
+    //       }
+    //     } catch (error) {
+    //       setLoginError(error.message);
+    //     }
+    // };
+
+    const renderTitle = () =>  (
         <View style={styles.titleContainer}>
             <Text style={Typography.FONT_H1}>
                 Welcome back 👋,
@@ -31,41 +55,57 @@ const Login = () => {
         </View>
     );
 
-    const fields = () => (
+    const renderFields = () => (
         <React.Fragment>
             <InputText
                 inputPlaceholder="Email"
+                autoCapitalize='none'
+                keyboardType='email-address'
+                value={email}
+                onChangeText={text => setEmail(text)}
             />
             <InputText
                 inputPlaceholder="Password"
+                autoCapitalize='none'
+                value={password}
+                onChangeText={text => setPassword(text)}
+                secureTextEntry={true}
+            />
+            <ButtonText
+                text="Login"
+                onPress={() => { console.log("You Clicked on Me!"); }}
+                type="button"
+                buttonStyle="btnPrimaryNormal"
+                buttonSize="btnLarge"
             />
         </React.Fragment>                                                                                                                                                                                                                                                       
     );
 
-    const mobileView = () => (
+    const renderMobileView = () => (
         <DismissKeyboard>
             <View style={styles.container}>
-                { title() }
-                { fields() }                                                                                                                                                                                                                                                     
+                { renderTitle() }
+                { renderFields() }                                                                                                                                                                                                                                                     
             </View>
         </DismissKeyboard>
     );
 
-    const webView = () => (
+    const renderWebView = () => (
         <View style={styles.container}>
-            { title() }
-            { fields() }                                                                                                                                                                                                                                                     
+            { renderTitle() }
+            { renderFields() }                                                                                                                                                                                                                                                     
         </View>
     );
 
     return (
         <React.Fragment>
+            <StatusBar style='dark-content' />
             <KeyboardAvoidingView
                 behavior={Platform.OS === "ios" ? "padding" : "height"}
                 style={styles.container}
                 >
-                { Platform.OS === 'android' || Platform.OS === 'ios' && mobileView() }
-                { Platform.OS === 'web' && webView() }
+                { Platform.OS === 'android' || Platform.OS === 'ios' && renderMobileView() }
+                { Platform.OS === 'web' && renderWebView() }
             </KeyboardAvoidingView>
         </React.Fragment>
     );
