@@ -17,10 +17,7 @@ import {
     TouchableWithoutFeedback,
     Platform 
 } from 'react-native';
-import { openShareDialogAsync, openImagePickerAsync } from '../../utils/imagePickerUtils';
 import { Colours, Typography } from '../../styles';
-
-// import Firebase from '../../../config/firebase';
 
 const Login = () => {
 
@@ -33,16 +30,6 @@ const Login = () => {
           {children}
         </TouchableWithoutFeedback>
     );
-
-    // const onLogin = async () => {
-    //     try {
-    //       if (email !== '' && password !== '') {
-    //         await auth.signInWithEmailAndPassword(email, password);
-    //       }
-    //     } catch (error) {
-    //       setLoginError(error.message);
-    //     }
-    // };
 
     const renderTitle = () =>  (
         <View style={styles.titleContainer}>
