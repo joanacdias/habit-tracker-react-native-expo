@@ -1,11 +1,11 @@
 import { scaleFont } from './mixins';
 import { GRAY_600 } from './colours';
-import React, { useState, useEffect } from 'react';
-import { Poppins_600SemiBold } from '@expo-google-fonts/poppins';
+import { Poppins_400Regular, Poppins_600SemiBold, Poppins_500Medium } from '@expo-google-fonts/poppins';
 
 // FONT FAMILY
 export const FONT_FAMILY_TITLES = 'Poppins_600SemiBold';
 export const FONT_FAMILY_BODY = 'Poppins_400Regular';
+export const FONT_FAMILY_BUTTONS = 'Poppins_500Medium';
 
 // FONT SIZE
 export const FONT_SIZE_32 = scaleFont(32);
@@ -32,3 +32,9 @@ export const FONT_BODY_XL = {
   lineHeight: LINE_HEIGHT_28,
   color: GRAY_600,
 };
+
+export const FONT_BUTTON_L = {
+  fontFamily: FONT_FAMILY_BUTTONS,
+  fontSize: FONT_SIZE_16,
+  lineHeight: LINE_HEIGHT_24,
+}
