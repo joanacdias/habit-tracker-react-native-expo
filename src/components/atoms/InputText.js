@@ -12,8 +12,6 @@ const InputText = ({
   secureTextEntry
 }) => {
 
-  // const [text, onChangeText] = React.useState("");
-
   return (
     <SafeAreaView>
       <TextInput 

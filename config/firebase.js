@@ -1,4 +1,5 @@
-import firebase from 'firebase/compat/app';
+// import firebase from 'firebase/compat/app';
+import firebase from '@react-native-firebase/app';
 import 'firebase/auth';
 import Constants from 'expo-constants';
 

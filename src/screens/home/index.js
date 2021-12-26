@@ -2,10 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Firebase from '../../config/firebase';
+import Firebase from '../../../config/firebase';
+import auth from '@react-native-firebase/auth';
 import { AuthenticatedUserContext } from '../../navigation/AuthenticatedUserProvider';
 
-const auth = Firebase.auth();
+// const auth = Firebase.auth();
 
 const Home = () => {
 
@@ -13,7 +14,7 @@ const Home = () => {
 
   const handleSignOut = async () => {
     try {
-      await auth.signOut();
+      await auth().signOut();
     } catch (error) {
       console.log(error);
     }

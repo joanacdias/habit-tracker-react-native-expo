@@ -7,6 +7,7 @@ import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
 
 import Login from './src/screens/login';
+import Routes from './src/navigation';
 
 import {
   useFonts,
@@ -60,11 +61,12 @@ const App = () => {
     return <AppLoading />;
   } else {
     return (
-      <NavigationContainer>
-      <View style={styles.container}>
-        <Login/>
-      </View>
-      </NavigationContainer>
+      <Routes />
+      // <NavigationContainer>
+      // <View style={styles.container}>
+      //   <Login/>
+      // </View>
+      // </NavigationContainer>
     );
   }
 }
