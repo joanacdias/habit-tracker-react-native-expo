@@ -21,7 +21,7 @@ const InputText = ({
         keyboardAppearance='dark'
         placeholder={inputPlaceholder}
         autoCapitalize={autoCapitalize}
-        keyboardType={keyboardType || ''}
+        keyboardType={keyboardType}
         autoFocus={autoFocus}
         secureTextEntry={secureTextEntry}
       />
