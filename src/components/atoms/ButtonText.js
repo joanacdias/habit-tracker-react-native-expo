@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colours.PRIMARY,
         color: Colours.WHITE,
         borderRadius: Sizes.BORDER_RADIUS_FIELDS,
+        textAlign: 'center',
         overflow: 'hidden',
     },
     btnLarge: {
