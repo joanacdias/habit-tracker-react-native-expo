@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignSelf: 'stretch',
         justifyContent: 'center',
+        paddingHorizontal: 16,
     },  
     titleContainer: {
         alignItems: 'flex-start',
