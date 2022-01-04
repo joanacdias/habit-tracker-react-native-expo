@@ -26,12 +26,22 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
 
-    const handleSignUp = () => {
+    // const handleSignUp = () => {
+    //     auth
+    //         .createUserWithEmailAndPassword(email, password)
+    //         .then(userCredentials => {
+    //             const user = userCredentials.user;
+    //             console.log(user.email);
+    //         })
+    //         .catch(error => alert(error.message))
+    // }
+
+    const handleLogin = () => {
         auth
-            .createUserWithEmailAndPassword(email, password)
+            .signInWithEmailAndPassword(email, password)
             .then(userCredentials => {
                 const user = userCredentials.user;
-                console.log(user.email);
+                console.log('logged in with: ', user.email);
             })
             .catch(error => alert(error.message))
     }
@@ -71,7 +81,7 @@ const Login = () => {
             />
             <ButtonText
                 text="Login"
-                onPress={() => { console.log("You Clicked on Me!"); }}
+                onPress={(handleLogin)}
                 type="button"
                 buttonStyle="btnPrimaryNormal"
                 buttonSize="btnLarge"
