@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
 import { 
@@ -19,12 +19,25 @@ import {
 } from 'react-native';
 import { Colours, Typography } from '../../styles';
 import { auth } from '../../../firebase';
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginError, setLoginError] = useState('');
+
+    const navigation = useNavigation();  
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged(user => {
+            if (user) {
+                navigation.navigate("Home");
+            }
+        })
+
+        return unsubscribe;
+    }, [])
 
     // const handleSignUp = () => {
     //     auth

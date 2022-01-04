@@ -2,6 +2,8 @@ import React from "react";
 import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 import { Colours, Sizes, Typography } from '../../styles';
 
+import { useState } from 'react';
+
 const InputText = ({
   inputPlaceholder,
   autoCapitalize,
@@ -12,18 +14,25 @@ const InputText = ({
   secureTextEntry
 }) => {
 
+  const [currentValue, setCurrentValue] = useState('');
+
   return (
     <SafeAreaView>
       <TextInput 
         style={styles.input} 
-        value={value}
-        onChangeText={onChangeText}
         keyboardAppearance='dark'
         placeholder={inputPlaceholder}
         autoCapitalize={autoCapitalize}
         keyboardType={keyboardType}
         autoFocus={autoFocus}
         secureTextEntry={secureTextEntry}
+
+        value={value}
+        onChangeText={onChangeText}
+
+        // value={currentValue}
+        // onChangeText={v => setCurrentValue(v)}
+        // onBlur={onChangeText}
       />
     </SafeAreaView>
   );
